@@ -1,0 +1,27 @@
+name: dnn_nlp
+channels:
+  - defaults
+  - conda-forge
+  - pytorch
+  - plotly
+dependencies:
+  - python=3.11
+  - pandas
+  - jupyterlab
+  - numpy
+  - scipy
+  - nltk
+  - matplotlib
+  - seaborn
+  - plotly
+  - torch
+  - pip:
+    - python-dotenv
+    - PyYAML
+    - click     # used for making reusable cli scripts
+    - dvc       # data version control
+    - comet-ml  # experiment tracking
+    - pandasai  # pandas extension for AI assisted data analysis
+    - tensorflow
+    - keras
+

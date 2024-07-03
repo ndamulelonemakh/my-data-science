@@ -1,0 +1,23 @@
+name: classic_nlp
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.11
+  - pip
+  - scikit-learn
+  - pandas
+  - jupyterlab
+  - numpy
+  - scipy
+  - nltk
+  - matplotlib
+  - seaborn
+  - pip:
+    - python-dotenv
+    - PyYAML
+    - click     # used for making reusable cli scripts
+    - dvc       # data version control
+    - comet-ml  # experiment tracking
+    - pandasai  # pandas extension for AI assisted data analysis
+  
