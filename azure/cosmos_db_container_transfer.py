@@ -13,14 +13,14 @@ source_client = CosmosClient.from_connection_string(os.environ["COSMOS_CONNECTIO
 target_client = CosmosClient.from_connection_string(os.environ["COSMOS_CONNECTION_STRING__TARGET"])
 
 # Source Database and Container
-source_database_id = 'FMIDB'
-source_container_id = 'FMIBaseContainer'
+source_database_id = 'MyDB'
+source_container_id = 'MyBaseContainer'
 source_database = source_client.get_database_client(source_database_id)
 source_container = source_database.get_container_client(source_container_id)
 
 # Destination Database and Container
-destination_database_id = 'FMIDB'
-destination_container_id = 'FMIBaseContainer'
+destination_database_id = 'MyDB'
+destination_container_id = 'MyBaseContainer'
 destination_database = target_client.create_database_if_not_exists(destination_database_id)
 destination_container = destination_database.create_container_if_not_exists(destination_container_id, PartitionKey(path="/id"))
 
