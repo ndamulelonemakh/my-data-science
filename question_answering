@@ -1,0 +1,76 @@
+# Abstractions for a generic RAG(Retrieval Augmented Generation) pipeline
+# each component could have an adapter for different libraries e.g. langchain, llamaindex etc.
+from typing import NamedTuple
+
+
+class Document(NamedTuple):
+    id: str
+    content: str
+    metadata: dict
+
+    def to_dict(self):
+        return {"id": self.id, "content": self.content, "metadata": self.metadata}
+
+    @classmethod
+    def from_file(cls, file_path):
+        with open(file_path, "r") as f:
+            content = f.read()
+        return cls(
+            id=file_path,  # or use md5 hash of content
+            content=content,
+            metadata={"source": file_path, "bytes": len(content.encode("utf-8")), "char_length": len(content)},
+        )
+
+    @classmethod
+    def from_langchain(cls, langchain_doc): ...
+
+    @classmethod
+    def from_llamaindex(cls, llamaindex_doc): ...
+
+    def __str__(self) -> str:
+        return f"Document(id={self.id}, metadata={self.metadata}, content={self.content[:1024]})"
+
+
+class VectorDB: ...
+
+
+class VectorDBRetriever: ...
+
+
+class ReRanker: ...
+
+
+class QueryTransformer: ...
+
+
+class LLMProvider: ...
+
+
+class EmbeddingProvider: ...
+
+
+class ResponseTransformer: ...
+
+
+class PipelineLogger: ...
+
+
+class RAGPipeline: ...
+
+
+class RAGPipelineBuilder: ...
+
+
+# Sample usage
+def example_usage():
+    builder = RAGPipelineBuilder(config_path="config.yml")
+    builder.use_index("langchain-rag-1-demo")
+    rag_pipeline = builder.build()
+
+    question = "Does the eu ai act affect tech companies? If so, how?"
+    response = rag_pipeline.query(question, json=False)
+    print(response)
+
+
+if __name__ == "__main__":
+    example_usage()
