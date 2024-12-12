@@ -1,0 +1,5 @@
+As a python and LLM coding expert, I need you to lead my team to refector a jupyter notebook script below into a reusable utility library for obtaining markdown data from a given url. Be sure to follow best python practices for logging, error handling and testability. Here is the script exported from a jupyter notebook.
+###
+{exported_jupyter_script}
+###
+Refactored:
