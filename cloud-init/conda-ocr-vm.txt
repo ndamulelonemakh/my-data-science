@@ -10,10 +10,6 @@ packages:
   - poppler-utils
   - tesseract-ocr  
   - tesseract-ocr-eng 
-
-runcmd:
-  - curl -fSsL https://bootstrap.pypa.io/get-pip.py | python3.9
-  - python3.9 -m pip install azure-batch==13.0.0
  
 # Install Miniconda
 runcmd:
@@ -29,4 +25,8 @@ write_file:
     eval "$($HOME/miniconda/bin/conda shell.bash hook)"
     conda init
 
+# Optional: Install stuff on system python?
+#runcmd:
+#  - curl -fSsL https://bootstrap.pypa.io/get-pip.py | python3.11
+#  - python3.11 -m pip install azure-batch==13.0.0
 
