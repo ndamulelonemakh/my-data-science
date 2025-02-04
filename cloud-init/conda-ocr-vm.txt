@@ -1,0 +1,32 @@
+#cloud-config
+repo_update: true
+repo:
+  - ppa:alex-p/tesseract-ocr-devel
+  - ppa:deadsnakes/ppa
+
+package_update: true
+packages:
+  - python3.11
+  - poppler-utils
+  - tesseract-ocr  
+  - tesseract-ocr-eng 
+
+runcmd:
+  - curl -fSsL https://bootstrap.pypa.io/get-pip.py | python3.9
+  - python3.9 -m pip install azure-batch==13.0.0
+ 
+# Install Miniconda
+runcmd:
+  - wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  - bash Miniconda3-latest-Linux-x86_64.sh -b
+  - rm Miniconda3-latest-Linux-x86_64.sh
+
+# Add Miniconda to PATH
+write_file:
+  path: /etc/profile.d/conda.sh
+  content: |
+    export PATH="$HOME/miniconda/bin:$PATH"
+    eval "$($HOME/miniconda/bin/conda shell.bash hook)"
+    conda init
+
+
