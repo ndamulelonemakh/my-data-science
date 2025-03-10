@@ -1,0 +1,39 @@
+{
+    "name": "pipeline1",
+    "properties": {
+        "activities": [
+            {
+                "name": "Web1",
+                "type": "WebActivity",
+                "dependsOn": [],
+                "policy": {
+                    "timeout": "0.12:00:00",
+                    "retry": 0,
+                    "retryIntervalInSeconds": 30,
+                    "secureOutput": false,
+                    "secureInput": false
+                },
+                "userProperties": [],
+                "typeProperties": {
+                    "method": "POST",
+                    "headers": {
+                        "Content-Type": "application/json"
+                    },
+                    "url": "https://api.loganalytics.io/v1/workspaces/{your-workspace-id}/query",
+                    "body": {
+                        "query": "mytable | limit 10"
+                    },
+                    "authentication": {
+                        "resource": "https://api.loganalytics.io",
+                        "credential": {
+                            "referenceName": "loganalytics-credential1",
+                            "type": "CredentialReference"
+                        },
+                        "type": "UserAssignedManagedIdentity"
+                    }
+                }
+            }
+        ],
+        "annotations": []
+    }
+}
